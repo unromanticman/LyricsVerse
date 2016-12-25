@@ -52,36 +52,43 @@
 <div style="padding: 100px;">
   <form>
     <div class="form-group">
-      <label for="formGroupExampleInput">Lyrics Name</label>
-      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+      <label for="formGroupExampleInput">Name</label>
+      <input type="text" class="form-control" id="username" placeholder="Example input">
     </div>
     <div class="form-group">
       <label for="formGroupExampleInput2">Account</label>
-      <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+      <input type="text" class="form-control" id="account" placeholder="Another input">
     </div>
     <div class="form-group">
       <label for="formGroupExampleInput2">Password</label>
-      <input type="Password" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+      <input type="Password" class="form-control" id="password1" placeholder="Another input">
     </div>
    
     <div class="form-group">
       <label for="formGroupExampleInput2">Repassword</label>
-      <input type="Password" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+      <input type="Password" class="form-control" id="password2" placeholder="Another input">
     </div>
 
+ <div class="form-group">
+   <label for="formGroupExampleInput2">Gender</label>
+    <br>
+    <label class="radio-inline"><input type="radio" name="gender" value="1">♂</label>
+    <label class="radio-inline"><input type="radio" name="gender" value="0">♀</label>
+    <label class="radio-inline"><input type="radio" name="gender" value="2">Secret</label>
+   </div>
      <div class="form-group">
       <label for="formGroupExampleInput2">Tag</label>
-      <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+      <input type="text" class="form-control" id="tag" placeholder="Another input">
     </div>
      <div class="form-group">
         <label for="comment">Intro</label>
-        <textarea class="form-control" rows="5" id="comment"></textarea>
+        <textarea class="form-control" rows="5" id="intro"></textarea>
     </div>
     <div style="text-align: center;">
     <div class="checkbox">
-      <label><input type="checkbox" value="">同意相關條約</label>
+      <label><input id="readCheck" type="checkbox" value="">同意相關條約</label>
     </div>
-    <button type="button" class="btn btn-default">Register</button>
+    <button type="button" class="btn btn-default" onclick="sendLogin();">Register</button>
     </div>
   </form>
 </div>
@@ -91,4 +98,51 @@
 </footer>
 
 </body>
+
+
+<script type="text/javascript">
+    /*
+      * 送出表單
+      */
+      function sendLogin()
+      {
+          /*
+          * Ajax
+          */
+          var username = $('#username').val();
+          var account = $('#account').val();
+          var password1 = $('#password1').val();
+          var password2 = $('#password2').val();
+          var tag = $('#tag').val();
+          var intro = $('#intro').val();
+          var gender = $("input[name='gender']:checked").val();
+
+
+          if(password1!=password2){
+            alert('password error');
+            return;
+          }
+
+          var params = 'username='+username+
+                        '&account='+account+
+                        '&password='+password1+
+                        '&tag='+tag+
+                        '&intro='+intro+
+                        '&gender='+gender;
+
+                        alert(params);
+        $.ajax({
+                  url: 'API/register.jsp',
+                  type:"post",
+                  data: params,
+                  success: function(data){
+                      var data = JSON.parse(data);
+                      if(data.status == 'success'){
+                          alert('success');
+                      }
+                  }
+          });
+      }
+
+</script>
 </html>
