@@ -53,18 +53,18 @@
   <form>
     <div class="form-group">
       <label for="formGroupExampleInput">Lyrics Name</label>
-      <input type="text" class="form-control" id="formGroupExampleInput" placeholder="Example input">
+      <input type="text" class="form-control" id="lyricsname" placeholder="Example input">
     </div>
     <div class="form-group">
       <label for="formGroupExampleInput2">Info</label>
-      <input type="text" class="form-control" id="formGroupExampleInput2" placeholder="Another input">
+      <input type="text" class="form-control" id="info" placeholder="Another input">
     </div>
     <div class="form-group">
         <label for="comment">Lyrics</label>
-        <textarea class="form-control" rows="5" id="comment"></textarea>
+        <textarea class="form-control" rows="5" id="lyrics"></textarea>
     </div>
     <div style="text-align: center;">
-    <button type="button" class="btn btn-default">Post</button>
+    <button onclick="sendPost();" type="button" class="btn btn-default">Post</button>
     </div>
   </form>
 </div>
@@ -72,6 +72,37 @@
 <footer class="container-fluid text-center">
   <p>Footer Text</p>
 </footer>
+<script type="text/javascript">
+    /*
+      * 送出表單
+      */
+      function sendPost()
+      {
+          /*
+          * Ajax
+          */
+          var lyricsname = $('#lyricsname').val();
+          var info = $('#info').val();
+          var lyrics = $('#lyrics').val();
 
+          var params = 'lyricsname='+lyricsname+
+                        '&info='+info+
+                        '&lyrics='+lyrics;
+
+                        alert(params);
+        $.ajax({
+                  url: 'API/lyricsPost.jsp',
+                  type:"post",
+                  data: params,
+                  success: function(data){
+                      var data = JSON.parse(data);
+                      if(data.status == 'success'){
+                          alert('success');
+                      }
+                  }
+          });
+      }
+
+</script>
 </body>
 </html>

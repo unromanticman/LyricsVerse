@@ -4,15 +4,17 @@
 <%@include file="db.config.jsp"%>
 <%
 
+ request.setCharacterEncoding("UTF-8");
+
 
 Connection con = null;
 Statement stmt = null; 
 String query = ""; 
 
 String uploadUser = "1";
-String title = "2";
-String info ="3";
-String verse = "4";
+String title = request.getParameter("lyricsname");;
+String info = request.getParameter("info");;
+String verse = request.getParameter("lyrics");;
 
 try{
     Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -23,8 +25,9 @@ try{
 	stmt.executeUpdate(query);
 
 	JSONObject json = new JSONObject();
-	json.put("msg", "success");
-	json.put("status", "post verse success");
+	
+	json.put("status", "success");
+	json.put("msg", "post verse success");
 	String output = json.toString();
 	out.println(output);
 	con.close(); 
@@ -32,8 +35,8 @@ try{
 }
 catch(SQLException sqle){
  	JSONObject json = new JSONObject();
-	json.put("msg", "failed");
-	json.put("status", sqle);
+	json.put("status", "failed");
+	json.put("msg", sqle);
 	String output = json.toString();
 	out.println(output);
 }
