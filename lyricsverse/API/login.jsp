@@ -33,14 +33,14 @@ Connection con = null;
 Statement stmt = null; 
 String query = ""; 
 
-
+String uid = "";
 String account = request.getParameter("account");
 String password = (encrypt(request.getParameter("password"))).toString();
 try{
     Class.forName("com.mysql.jdbc.Driver").newInstance();
     con = DriverManager.getConnection(DBDSN);
     stmt = con.createStatement();
-    query = "select account,password from w10540.tbuser WHERE account='"+account+"' and password ='"+password+"'";
+    query = "select * from w10540.tbuser WHERE account='"+account+"' and password ='"+password+"'";
     ResultSet rs = stmt.executeQuery(query); 
  	
 
@@ -48,6 +48,7 @@ try{
     int rowcount = 0;
     
     if (rs.last()) {
+      uid = rs.getString("id");
 	  rowcount = rs.getRow();
 	  rs.beforeFirst(); 
 	}
@@ -62,6 +63,7 @@ try{
 	 	Date date = new Date();
 	 	String token = encrypt(account+date.toString());
 	 	session.setAttribute( "TOKEN", token);		
+	 	session.setAttribute( "UID", uid);	
 
 	 	//update token in sql
 	 	Class.forName("com.mysql.jdbc.Driver").newInstance();

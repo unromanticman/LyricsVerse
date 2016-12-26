@@ -11,7 +11,7 @@ Connection con = null;
 Statement stmt = null; 
 String query = ""; 
 
-String uploadUser = "1";
+String uploadUser = session.getAttribute("UID").toString();
 String title = request.getParameter("lyricsname");
 String info = request.getParameter("info");
 String verse = request.getParameter("lyrics");

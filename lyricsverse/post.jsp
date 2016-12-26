@@ -1,3 +1,10 @@
+<% 
+  //check user login
+  if(session.getAttribute("TOKEN")==null){
+   out.print("Please login to Post.");
+   return;
+  }
+ %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,6 +110,7 @@
                       var data = JSON.parse(data);
                       if(data.status == 'success'){
                           alert('success');
+                          window.location.href="../lyricsverse/index.html";
                       }
                   }
           });
