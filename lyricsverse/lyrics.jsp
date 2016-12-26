@@ -136,7 +136,6 @@
                   }
           });
       }
-
        $( document ).ready(function() {
           getLyricsContent();
           //sendSearch("INDEX8");
