@@ -1,3 +1,4 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,76 +79,16 @@
 </div>
   
 <div class="text-center">
-<div>
-<h4>Miss Ko 葛仲珊【皇后區的皇后 Queen of Queens】Official Video</h4>
+<div id="title">
+</div>
+<div id="upload">
+</div>
+<div id="date">
+</div>
+<div id="youtube">
 </div>
 <div>
-upload：aka
-</div>
-<div>
-Date:20161011
-</div>
-<div>
-Youtube:sssss
-</div>
-<div>
-<pre>
-皇后區的皇后 Queen of Queens
-詞：葛仲珊 
-曲：葛仲珊/剃刀蔣
-
-Verse 1
-城門打開讓我進
-來自皇后區的queen
-別再落伍裝不相信
-誰的饒舌最有力
-Bratatatat bomb ya team
-拿我詞來當武器
-哦你以為我不見就
-代表有人代得替－我
-很抱歉 但是我正在起火
-充滿嘻哈味道回到老娘的帝國
-I keep it equal 隨時換成bilingual
-英文如果厲害那就一定很清楚
-創新的記錄 看我技術一直進步
-負面那些評估 yea我相信只是嫉妒
-就躲在螢幕後面偷偷摸摸欺負
-以為我怕你但是真的我也並不
-想說我中文不強又怎樣
-你愛的歌手還是對我欣賞
-確得了獎 寫歌給aMEI唱
-我不是你偶像 我是你偶像的偶像
-
-Chorus
-Hands up 讓我看到你們雙手 (雙手)
-Hands up, yea你最好別給搞錯 (搞錯)
-Hands up 這是皇后區的皇后 (皇后區的皇后)
-皇后區的皇后
-Hands up 讓我看到你們雙手 (雙手)
-Hands up, yea你最好別給搞錯 (搞錯)
-Hands up 這是皇后區的皇后 (皇后區的皇后)
-回到我的寶座
-
-Verse 2
-That’s right, you know
-別想來跟我鬥
-或假裝跟我熟
-沒錢就沒有空
-不只是純藝人
-我是個生意人
-回來的目的就是努力 不是混一混
-不喜歡睡 習慣培養我的軍隊
-對女力嘻哈 華語歷史上第一位
-卻不是靠我父母給我任何機會
-在銀行裡的錢是自己賺的薪水
-想說我什麼 不懂的給我閉嘴
-從小就獨立從來沒有必要聽誰
-就個性堅強 邊饒舌邊唱
-把整個環球音樂扛在我的肩上
-我最不喜歡人家在我面前放屁
-除非是事實 我廢話都不相信
-Yea這是Miss Ko你最好別給搞錯
-帶來一些好貨 回到我的寶座
+<pre id="lyricsContent">
 </pre>
 </div>
 
@@ -159,4 +100,46 @@ Yea這是Miss Ko你最好別給搞錯
 </footer>
 
 </body>
+<script type="text/javascript">
+   /*
+      * 送出表單
+      */
+      function getLyricsContent()
+      {
+          /*
+          * Ajax
+          */
+         <%
+          String vid = "0";
+          if (request.getParameter("vid") == null) {
+              out.println("This Verse not Exist");
+              return;
+          } else {
+              vid = request. getParameter("vid");
+          }
+         %>
+
+        var params = 'id='+'<%=vid%>';
+
+        $.ajax({
+                  url: 'API/getLyricsContent.jsp',
+                  type:"post",
+                  data: params,
+                  success: function(data){
+                      var data = JSON.parse(data);
+                     
+                    $('#title').append(data[0].title);
+                    $('#lyricsContent').append('<p>'+data[0].verse+'</p>');
+                    $('#date').append(data[0].uploadDate);
+                    $('#upload').append(data[0].name+'['+data[0].account+']');
+                    $('#youtube').append('<a href="'+data[0].link+'">'+data[0].link+'</a>');
+                  }
+          });
+      }
+
+       $( document ).ready(function() {
+          getLyricsContent();
+          //sendSearch("INDEX8");
+      });
+</script>
 </html>

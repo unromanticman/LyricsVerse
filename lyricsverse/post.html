@@ -60,6 +60,10 @@
       <input type="text" class="form-control" id="info" placeholder="Another input">
     </div>
     <div class="form-group">
+      <label for="formGroupExampleInput2">link</label>
+      <input type="text" class="form-control" id="link" placeholder="Another input">
+    </div>
+    <div class="form-group">
         <label for="comment">Lyrics</label>
         <textarea class="form-control" rows="5" id="lyrics"></textarea>
     </div>
@@ -84,10 +88,12 @@
           var lyricsname = $('#lyricsname').val();
           var info = $('#info').val();
           var lyrics = $('#lyrics').val();
+          var link = $('#link').val();
 
           var params = 'lyricsname='+lyricsname+
                         '&info='+info+
-                        '&lyrics='+lyrics;
+                        '&lyrics='+lyrics+
+                        '&link='+link;
 
         $.ajax({
                   url: 'API/lyricsPost.jsp',

@@ -12,15 +12,15 @@ Statement stmt = null;
 String query = ""; 
 
 String uploadUser = "1";
-String title = request.getParameter("lyricsname");;
-String info = request.getParameter("info");;
-String verse = request.getParameter("lyrics");;
-
+String title = request.getParameter("lyricsname");
+String info = request.getParameter("info");
+String verse = request.getParameter("lyrics");
+String link = request.getParameter("link");
 try{
     Class.forName("com.mysql.jdbc.Driver").newInstance();
 	con = DriverManager.getConnection(DBDSN);
     stmt = con.createStatement();
-    query = "INSERT INTO w10540.`tblyrics` (tblyrics.`title`,tblyrics.`verse`,tblyrics.`info`,tblyrics.`uploadUser`,tblyrics.`uploadDate`)VALUES ('"+title+"','"+verse+"','"+info+"','"+uploadUser+"',NOW())";
+    query = "INSERT INTO w10540.`tblyrics` (tblyrics.`title`,tblyrics.`verse`,tblyrics.`info`,tblyrics.`uploadUser`,tblyrics.`uploadDate`,tblyrics.link)VALUES ('"+title+"','"+verse+"','"+info+"','"+uploadUser+"',NOW(),'"+link+"')";
 	
 	stmt.executeUpdate(query);
 

@@ -41,6 +41,7 @@ if(term.equals("INDEX8")){
 			obj.put("uploadDate", rs.getString("uploadDate"));
 			obj.put("account", rs.getString("account"));
 			obj.put("name", rs.getString("name"));
+			obj.put("id", rs.getString("id"));
 			list.put(obj);
 		}
 
@@ -78,6 +79,7 @@ else{
 			obj.put("uploadDate", rs.getString("uploadDate"));
 			obj.put("account", rs.getString("account"));
 			obj.put("name", rs.getString("name"));
+			obj.put("id", rs.getString("id"));
 			list.put(obj);
 		}
 
