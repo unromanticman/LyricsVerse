@@ -118,6 +118,55 @@
 <footer class="container-fluid text-center">
   <p>Footer Text</p>
 </footer>
+<script type="text/javascript">
 
+      function sendSearch(){
+          /*
+          * Ajax
+          */
+         
+          var params = 'term=s'
+
+        $.ajax({
+                  url: 'API/getLyrics.jsp',
+                  type:"post",
+                  data: params,
+                  success: function(data){
+                      var data = JSON.parse(data);
+                      alert(data);
+                  }
+          });
+
+      }
+
+
+      /*
+      * 送出表單
+      */
+      function getINDEX8()
+      {
+          /*
+          * Ajax
+          */
+         
+          var params = 'term=INDEX8'
+
+        $.ajax({
+                  url: 'API/getLyrics.jsp',
+                  type:"post",
+                  data: params,
+                  success: function(data){
+                      var data = JSON.parse(data);
+                      alert(data);
+                  }
+          });
+      }
+
+      
+      $( document ).ready(function() {
+          getINDEX8();
+          sendSearch();
+      });
+</script>
 </body>
 </html>
