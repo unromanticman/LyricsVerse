@@ -62,58 +62,20 @@
   <div class="row text-center">
         <div class="lv-div-center" style="width: 50%">
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Search for...">
+      <input id="searchText" type="text" class="form-control" placeholder="Search for...">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
+        <button onclick="sendSearch()" class="btn btn-default" type="button">Go!</button>
       </span>
     </div><!-- /input-group -->
  </div>
   </div>
             
 </div>
-  
-<div class="container-fluid bg-3 text-center">    
-  <h3>Lyrics</h3><br>
-  <div class="row">
-    <div class="col-sm-3">
-      <p>Some text..</p>
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-    </div>
-    <div class="col-sm-3"> 
-      <p>Some text..</p>
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-    </div>
-    <div class="col-sm-3"> 
-      <p>Some text..</p>
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-    </div>
-    <div class="col-sm-3">
-      <p>Some text..</p>
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-    </div>
-  </div>
-</div><br>
+<div id="searchRs">
+</div>
+<br>
 
-<div class="container-fluid bg-3 text-center">    
-  <div class="row">
-    <div class="col-sm-3">
-      <p>Some text..</p>
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-    </div>
-    <div class="col-sm-3"> 
-      <p>Some text..</p>
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-    </div>
-    <div class="col-sm-3"> 
-      <p>Some text..</p>
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-    </div>
-    <div class="col-sm-3">
-      <p>Some text..</p>
-      <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image">
-    </div>
-  </div>
-</div><br><br>
+<br><br>
 
 <footer class="container-fluid text-center">
   <p>Footer Text</p>
@@ -125,7 +87,7 @@
           * Ajax
           */
          
-          var params = 'term=s'
+          var params = 'term='+$( "#searchText" ).val()+'';
 
         $.ajax({
                   url: 'API/getLyrics.jsp',
@@ -133,7 +95,38 @@
                   data: params,
                   success: function(data){
                       var data = JSON.parse(data);
-                      alert(data);
+                      var allDataRow = "";
+                      //先mod4看有幾個
+                      var temp = "";
+                      var count = 0;
+                      for(var i=0;i<data.length;i++){
+                          temp +='<div class="col-sm-3"> <p>'+
+                          data[i].title
+                          +'</p><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>';
+                        count++;
+                        if(count%4==0){
+                          //mix row & add
+                          allDataRow += '<div class="container-fluid bg-3 text-center"><div class="row">'
+                          +
+                            temp;
+                          +
+                          '</div>';
+                          if(i!=0){
+                            allDataRow +="&nbsp;<br/>";
+                          }
+                          temp="";
+                        }
+                      }
+                      //final
+                      allDataRow += '<div class="container-fluid bg-3 text-center"><div class="row">'
+                          +
+                            temp;
+                          +
+                         '</div>';
+
+                      $( "#searchRs" ).empty();
+                      $( "#searchRs" ).append( allDataRow );
+
                   }
           });
 
@@ -149,7 +142,7 @@
           * Ajax
           */
          
-          var params = 'term=INDEX8'
+        var params = 'term=INDEX8';
 
         $.ajax({
                   url: 'API/getLyrics.jsp',
@@ -157,7 +150,38 @@
                   data: params,
                   success: function(data){
                       var data = JSON.parse(data);
-                      alert(data);
+                      var allDataRow = "";
+                      //先mod4看有幾個
+                      var temp = "";
+                      var count = 0;
+                      for(var i=0;i<data.length;i++){
+                          temp +='<div class="col-sm-3"> <p>'+
+                          data[i].title
+                          +'</p><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>';
+                        count++;
+                        if(count%4==0){
+                          //mix row & add
+                          allDataRow += '<div class="container-fluid bg-3 text-center"><div class="row">'
+                          +
+                            temp;
+                          +
+                          '</div>';
+                          if(i!=0){
+                            allDataRow +="&nbsp;<br/>";
+                          }
+                          temp="";
+                        }
+                      }
+                      //final
+                      allDataRow += '<div class="container-fluid bg-3 text-center"><div class="row">'
+                          +
+                            temp;
+                          +
+                         '</div>';
+
+                      $( "#searchRs" ).empty();
+                      $( "#searchRs" ).append( allDataRow );
+
                   }
           });
       }
@@ -165,7 +189,7 @@
       
       $( document ).ready(function() {
           getINDEX8();
-          sendSearch();
+          //sendSearch("INDEX8");
       });
 </script>
 </body>
