@@ -1,3 +1,7 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+ request.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,7 +63,7 @@
       <ul class="nav navbar-nav navbar-right">
       <%
         if(session.getAttribute("TOKEN")==null){
-out.print("<li><a href='login.html'><span class='glyphicon glyphicon-log-in'></span> Login</a></li>");
+out.print("<li><a href='login.jsp'><span class='glyphicon glyphicon-log-in'></span> Login</a></li>");
         }
         else{
         out.print(
@@ -102,66 +106,28 @@ out.print("<li><a href='login.html'><span class='glyphicon glyphicon-log-in'></s
 <script type="text/javascript">
 
       function sendSearch(){
-          /*
-          * Ajax
-          */
-         
-          var params = 'term='+$( "#searchText" ).val()+'';
-
-        $.ajax({
-                  url: 'API/getLyrics.jsp',
-                  type:"post",
-                  data: params,
-                  success: function(data){
-                      var data = JSON.parse(data);
-                      var allDataRow = "";
-                      //先mod4看有幾個
-                      var temp = "";
-                      var count = 0;
-                      for(var i=0;i<data.length;i++){
-                          temp +='<div class="col-sm-3"> <a href="lyrics.jsp?vid='+data[i].id+'">'+
-                          data[i].title
-                          +'</a><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>';
-                        count++;
-                        if(count%4==0){
-                          //mix row & add
-                          allDataRow += '<div class="container-fluid bg-3 text-center"><div class="row">'
-                          +
-                            temp;
-                          +
-                          '</div>';
-                          if(i!=0){
-                            allDataRow +="&nbsp;<br/>";
-                          }
-                          temp="";
-                        }
-                      }
-                      //final
-                      allDataRow += '<div class="container-fluid bg-3 text-center"><div class="row">'
-                          +
-                            temp;
-                          +
-                         '</div>';
-
-                      $( "#searchRs" ).empty();
-                      $( "#searchRs" ).append( allDataRow );
-
-                  }
-          });
-
+        window.location.replace('?term='+$( "#searchText" ).val());
+         return;
       }
 
 
       /*
       * 送出表單
       */
-      function getINDEX8()
+      function getLyrics()
       {
           /*
           * Ajax
           */
-         
-        var params = 'term=INDEX8';
+        <%
+      String term = "INDEX8";
+       if(request.getParameter("term") != null){
+            term = new String(request.getParameter("term")
+                                .getBytes("ISO-8859-1"), "utf-8");
+        }
+
+        %>
+        var params = 'term=<%=term%>';
 
         $.ajax({
                   url: 'API/getLyrics.jsp',
@@ -218,7 +184,7 @@ out.print("<li><a href='login.html'><span class='glyphicon glyphicon-log-in'></s
       }
       
       $( document ).ready(function() {
-          getINDEX8();
+          getLyrics();
           //sendSearch("INDEX8");
       });
 </script>

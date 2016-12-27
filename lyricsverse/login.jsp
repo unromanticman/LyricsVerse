@@ -1,3 +1,7 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+ request.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -54,7 +58,7 @@
       <ul class="nav navbar-nav navbar-right">
         <%
         if(session.getAttribute("TOKEN")==null){
-out.print("<li><a href='login.html'><span class='glyphicon glyphicon-log-in'></span> Login</a></li>");
+out.print("<li><a href='login.jsp'><span class='glyphicon glyphicon-log-in'></span> Login</a></li>");
         }
         else{
         out.print(
@@ -130,6 +134,7 @@ out.print("<li><a href='login.html'><span class='glyphicon glyphicon-log-in'></s
                       var data = JSON.parse(data);
                       if(data.status == 'success'){
                           alert('success');
+                          window.location.href='./index.jsp';
                       }
                   }
           });
@@ -142,6 +147,7 @@ out.print("<li><a href='login.html'><span class='glyphicon glyphicon-log-in'></s
                   data: params,
                   success: function(data){
                       location.reload();
+
                   }
           });
 

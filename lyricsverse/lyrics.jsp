@@ -1,4 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+ request.setCharacterEncoding("UTF-8");
+%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,7 +58,7 @@
       <ul class="nav navbar-nav navbar-right">
        <%
         if(session.getAttribute("TOKEN")==null){
-out.print("<li><a href='login.html'><span class='glyphicon glyphicon-log-in'></span> Login</a></li>");
+out.print("<li><a href='login.jsp'><span class='glyphicon glyphicon-log-in'></span> Login</a></li>");
         }
         else{
         out.print(
@@ -77,9 +80,9 @@ out.print("<li><a href='login.html'><span class='glyphicon glyphicon-log-in'></s
   <div class="row text-center">
         <div class="lv-div-center" style="width: 50%">
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Search for...">
+      <input type="text" id="searchText" class="form-control" placeholder="Search for...">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
+        <button onclick="window.location.replace('./index.jsp?term='+$( '#searchText' ).val());" class="btn btn-default" type="button">Go!</button>
       </span>
     </div><!-- /input-group -->
  </div>
@@ -110,7 +113,8 @@ out.print("<li><a href='login.html'><span class='glyphicon glyphicon-log-in'></s
 
 </body>
 <script type="text/javascript">
-   /*
+     
+      /*
       * 送出表單
       */
       function getLyricsContent()
@@ -145,6 +149,8 @@ out.print("<li><a href='login.html'><span class='glyphicon glyphicon-log-in'></s
                   }
           });
       }
+
+    
        $( document ).ready(function() {
           getLyricsContent();
           //sendSearch("INDEX8");

@@ -20,7 +20,7 @@ String id = request.getParameter("id");
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
 	    con = DriverManager.getConnection(DBDSN);
 	    stmt = con.createStatement();
-	    query = "select * from  w10540.tblyrics , w10540.tbuser where  w10540.tbuser.account =  w10540.tblyrics.uploadUser and (w10540.tblyrics.`id` = '"+id+"')";
+	    query = "select * from  w10540.tblyrics , w10540.tbuser where  w10540.tbuser.id =  w10540.tblyrics.uploadUser and (w10540.tblyrics.`id` = '"+id+"')";
 	    ResultSet rs = stmt.executeQuery(query); 
 
 		JSONArray list = new JSONArray();

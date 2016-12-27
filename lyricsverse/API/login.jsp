@@ -36,6 +36,7 @@ String query = "";
 String uid = "";
 String account = request.getParameter("account");
 String password = (encrypt(request.getParameter("password"))).toString();
+
 try{
     Class.forName("com.mysql.jdbc.Driver").newInstance();
     con = DriverManager.getConnection(DBDSN);

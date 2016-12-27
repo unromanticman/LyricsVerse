@@ -4,7 +4,7 @@
 <%@include file="db.config.jsp"%>
 <%
 
- request.setCharacterEncoding("UTF-8");
+request.setCharacterEncoding("UTF-8");
 
 
 Connection con = null;

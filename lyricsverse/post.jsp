@@ -1,10 +1,17 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+ request.setCharacterEncoding("UTF-8");
+%>
 <% 
   //check user login
   if(session.getAttribute("TOKEN")==null){
    out.print("Please login to Post.");
+   out.print("<script>window.location.href='./login.jsp'</script>");
    return;
+
   }
  %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,7 +58,7 @@
       <ul class="nav navbar-nav navbar-right">
        <%
         if(session.getAttribute("TOKEN")==null){
-out.print("<li><a href='login.html'><span class='glyphicon glyphicon-log-in'></span> Login</a></li>");
+out.print("<li><a href='login.jsp'><span class='glyphicon glyphicon-log-in'></span> Login</a></li>");
         }
         else{
         out.print(
@@ -119,7 +126,7 @@ out.print("<li><a href='login.html'><span class='glyphicon glyphicon-log-in'></s
                       var data = JSON.parse(data);
                       if(data.status == 'success'){
                           alert('success');
-                          window.location.href="../lyricsverse/index.html";
+                          window.location.href="../lyricsverse/index.jsp";
                       }
                   }
           });
