@@ -25,6 +25,16 @@
     .lv-text-center{
       text-align: center;
     }
+
+    a{
+      color: black;
+      text-decoration:none;
+    }
+    a:hover {  
+      color: #272821;
+      text-decoration:none;
+    }
+
   </style>
 </head>
 <body>
@@ -47,7 +57,16 @@
         <li><a href="#">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <%
+        if(session.getAttribute("TOKEN")==null){
+out.print("<li><a href='login.html'><span class='glyphicon glyphicon-log-in'></span> Login</a></li>");
+        }
+        else{
+        out.print(
+        "<li><a href='javascript:logout();' ><span class='glyphicon glyphicon-log-in'></span>Logout</a></li>");
+      }
+        
+      %>
       </ul>
     </div>
   </div>
@@ -100,9 +119,9 @@
                       var temp = "";
                       var count = 0;
                       for(var i=0;i<data.length;i++){
-                          temp +='<div class="col-sm-3"> <p>'+
+                          temp +='<div class="col-sm-3"> <a href="lyrics.jsp?vid='+data[i].id+'">'+
                           data[i].title
-                          +'</p><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>';
+                          +'</a><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>';
                         count++;
                         if(count%4==0){
                           //mix row & add
@@ -155,9 +174,9 @@
                       var temp = "";
                       var count = 0;
                       for(var i=0;i<data.length;i++){
-                          temp +='<div class="col-sm-3"> <p>'+
+                          temp +='<div class="col-sm-3"> <a href="lyrics.jsp?vid='+data[i].id+'">'+
                           data[i].title
-                          +'</p><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>';
+                          +'</a><img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"></div>';
                         count++;
                         if(count%4==0){
                           //mix row & add
@@ -185,7 +204,18 @@
                   }
           });
       }
+      function logout(){
+        var params = "";
+        $.ajax({
+                  url: 'API/logout.jsp',
+                  type:"post",
+                  data: params,
+                  success: function(data){
+                      location.reload();
+                  }
+          });
 
+      }
       
       $( document ).ready(function() {
           getINDEX8();
