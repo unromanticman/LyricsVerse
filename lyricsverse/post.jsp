@@ -49,7 +49,16 @@
         <li><a href="#">Contact</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+       <%
+        if(session.getAttribute("TOKEN")==null){
+out.print("<li><a href='login.html'><span class='glyphicon glyphicon-log-in'></span> Login</a></li>");
+        }
+        else{
+        out.print(
+        "<li><a href='javascript:logout();' ><span class='glyphicon glyphicon-log-in'></span>Logout</a></li>");
+      }
+        
+      %>
       </ul>
     </div>
   </div>
@@ -115,7 +124,19 @@
                   }
           });
       }
+      function logout(){
+        var params = "";
+        $.ajax({
+                  url: 'API/logout.jsp',
+                  type:"post",
+                  data: params,
+                  success: function(data){
+                      location.reload();
+                  }
+          });
 
+      }
+      
 </script>
 </body>
 </html>
