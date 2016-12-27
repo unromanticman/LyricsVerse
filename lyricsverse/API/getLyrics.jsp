@@ -26,7 +26,7 @@ if(term.equals("INDEX8")){
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
 	    con = DriverManager.getConnection(DBDSN);
 	    stmt = con.createStatement();
-	    query = "select * from  w10540.tblyrics , w10540.tbuser where  w10540.tbuser.account =  w10540.tblyrics.uploadUser ORDER BY  w10540.tblyrics.`uploadDate` DESC limit 8";
+	    query = "select * from  w10540.tblyrics , w10540.tbuser where  w10540.tbuser.id =  w10540.tblyrics.uploadUser ORDER BY  w10540.tblyrics.`uploadDate` DESC limit 8";
 	    ResultSet rs = stmt.executeQuery(query); 
 
 	    int rowcount = 0;
@@ -64,7 +64,7 @@ else{
 	    Class.forName("com.mysql.jdbc.Driver").newInstance();
 	    con = DriverManager.getConnection(DBDSN);
 	    stmt = con.createStatement();
-	    query = "select * from  w10540.tblyrics , w10540.tbuser where ( verse LIKE '%"+term+"%' or title LIKE '%"+term+"%' or info Like '%"+term+"%' ) and  w10540.tbuser.account = w10540.tblyrics.uploadUser";
+	    query = "select * from  w10540.tblyrics , w10540.tbuser where ( verse LIKE '%"+term+"%' or title LIKE '%"+term+"%' or info Like '%"+term+"%' ) and  w10540.tbuser.id = w10540.tblyrics.uploadUser";
 	    ResultSet rs = stmt.executeQuery(query); 
 
 	    int rowcount = 0;
