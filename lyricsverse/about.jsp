@@ -33,7 +33,7 @@
     margin: 0 auto; 
     }
     p{
-       white-space: pre;
+       
     }
     #intro{
         font-size: 20px;
@@ -89,7 +89,8 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
   </div>
 </div>
 <div id="inner">
-<p id="intro">HEY!我是林郁翔，這是我的JSP作業，主要用來分享歌詞。
+<p id="intro">HEY!我是林郁翔，這是我的JSP作業，主要用來分享歌詞。<br>
+<br>
 因為有時候看Youtube下並不會有歌詞出現，必須另外找來看，因此做出這個網站。</p>
 <h3>功能：</h3>
 <p>1.發布歌詞</p>

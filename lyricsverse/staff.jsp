@@ -33,7 +33,7 @@
     margin: 0 auto; 
     }
     p{
-       white-space: pre;
+       //white-space: pre;
     }
     #intro{
         font-size: 20px;
