@@ -9,6 +9,9 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="./UI/animate.css">
+   <link rel="stylesheet" href="./UI/sweetalert2.css">
+   <script type="text/javascript" src="./UI/sweetalert2.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -98,7 +101,7 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
 </div>
   
 <div class="text-center lv-div-center">
-   <div class="container" style="width: 300px;">
+   <div id="loginPad" class="container" style="width: 300px;">
 
         <h2 class="form-signin-heading">Sign in</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
@@ -143,6 +146,14 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
                       var data = JSON.parse(data);
                       if(data.status == 'success'){
                           window.location.href='./index.jsp';
+                      }
+                      else{
+                        swal(
+                              'Failed',
+                              'Account or Password wrong!',
+                              'error'
+                            )
+                        $('#loginPad').addClass('animated shake');
                       }
                   }
           });

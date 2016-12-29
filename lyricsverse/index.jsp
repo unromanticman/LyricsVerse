@@ -10,6 +10,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./UI/animate.css">
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
@@ -86,7 +88,7 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
 
 <div class="jumbotron">
   <div class="container lv-text-center">
-    <h1>Lyrics Verse</h1>      
+    <h1 id="titlemain">Lyrics Verse</h1>      
     <p>We collect some lyrics.</p>
  
   </div>
@@ -194,8 +196,53 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
       
       $( document ).ready(function() {
           getLyrics();
+
+      
           //sendSearch("INDEX8");
       });
 </script>
+<!--自動往上-->
+  <style type="text/css">
+    #gotop {
+        display: none;
+        position: fixed;
+        right: 20px;
+        bottom: 20px;    
+        padding-left:15px; 
+        padding-right:15px; 
+        padding-top: 5px;  
+        padding-bottom: 5px;
+        font-size: 20px;
+        background: #777;
+        color: white;
+        cursor: pointer;
+        -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+    }
+  </style>
+  <!--自動往上-->
+  <div id="gotop"><p>︿</p></div>
+  <script type="text/javascript">
+  $(function(){
+      $("#gotop").click(function(){
+          jQuery("html,body").animate({
+              scrollTop:0
+          },1000);
+      });
+      $(window).scroll(function() {
+          if ($(this).scrollTop() > 250){
+              $('#gotop').fadeIn("fast");
+          } else {
+              $('#gotop').stop().fadeOut("fast");
+          }
+      });
+  });
+    $('#titlemain').addClass('animated fadeIn');
+  
+  </script>
+
+
+
 </body>
 </html>

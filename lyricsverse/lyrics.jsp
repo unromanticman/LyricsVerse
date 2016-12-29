@@ -36,6 +36,9 @@
         
     }
     .lv-size{
+      font-size: 20px;
+    }
+    .lv-size{
       color: black;
       text-decoration:none;
     }
@@ -141,12 +144,32 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
 
 </div>
 <br><br>
+<div id="disqus_thread" style="padding: 50px;"></div>
 
+<script>
+
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = '//lyrics-verse.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                                
 <footer class="container-fluid text-center">
    <p>Copyright © 2016 UM Inc. All rights reserved
 </p>
 </footer>
-
 </body>
 <script type="text/javascript">
       function setFonts(size){
@@ -211,4 +234,42 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
       }
       
 </script>
+<!--自動往上-->
+  <style type="text/css">
+    #gotop {
+        display: none;
+        position: fixed;
+        right: 20px;
+        bottom: 20px;    
+        padding-left:15px; 
+        padding-right:15px; 
+        padding-top: 5px;  
+        padding-bottom: 5px;
+        font-size: 20px;
+        background: #777;
+        color: white;
+        cursor: pointer;
+        -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+    }
+  </style>
+  <!--自動往上-->
+  <div id="gotop"><p>︿</p></div>
+  <script type="text/javascript">
+  $(function(){
+      $("#gotop").click(function(){
+          jQuery("html,body").animate({
+              scrollTop:0
+          },1000);
+      });
+      $(window).scroll(function() {
+          if ($(this).scrollTop() > 250){
+              $('#gotop').fadeIn("fast");
+          } else {
+              $('#gotop').stop().fadeOut("fast");
+          }
+      });
+  });
+  </script>
 </html>
