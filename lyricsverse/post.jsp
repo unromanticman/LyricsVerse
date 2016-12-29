@@ -53,12 +53,19 @@
         <li class="active"><a href="#">Home</a></li>
         <li><a href="#">About</a></li>
         <li><a href="#">Staff</a></li>
-        <li><a href="#">Contact</a></li>
+        <%
+        if(session.getAttribute("TOKEN")!=null){
+        out.print(
+        "<li><a href='post.jsp'>Post Lyrics</a></li>");
+      }
+        
+      %>
       </ul>
       <ul class="nav navbar-nav navbar-right">
        <%
         if(session.getAttribute("TOKEN")==null){
 out.print("<li><a href='login.jsp'><span class='glyphicon glyphicon-log-in'></span> Login</a></li>");
+out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</a></li>");
         }
         else{
         out.print(
@@ -126,7 +133,7 @@ out.print("<li><a href='login.jsp'><span class='glyphicon glyphicon-log-in'></sp
                       var data = JSON.parse(data);
                       if(data.status == 'success'){
                           alert('success');
-                          window.location.href="../lyricsverse/index.jsp";
+                          window.location.href="./index.jsp";
                       }
                   }
           });
