@@ -34,6 +34,7 @@ String id = request.getParameter("id");
 			obj.put("account", rs.getString("account"));
 			obj.put("name", rs.getString("name"));
 			obj.put("link", rs.getString("link"));
+			obj.put("screen",rs.getString("screen"));
 			list.put(obj);
 		}
 

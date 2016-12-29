@@ -5,7 +5,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+   <title>Lyrics Verse</title>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -32,7 +33,25 @@
     pre{
         background: white;
         border: none;
-        font-weight:;
+        
+    }
+    .lv-size{
+      color: black;
+      text-decoration:none;
+    }
+    .lv-size:hover {  
+      color: #272821;
+      text-decoration:none;
+    }
+    p{
+        white-space: pre;
+
+    }
+    #title{
+      font-size: 30px;
+    }
+    #upload,#date{
+       font-size: 20px;
     }
   </style>
 </head>
@@ -50,9 +69,9 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Staff</a></li>
+        <li class="active"><a href="./index.jsp">Home</a></li>
+        <li><a href="./about.jsp">About</a></li>
+        <li><a href="./staff.jsp">Staff</a></li>
        <%
         if(session.getAttribute("TOKEN")!=null){
         out.print(
@@ -99,6 +118,7 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
   
 <div class="text-center">
 <div id="title">
+
 </div>
 <div id="upload">
 </div>
@@ -106,21 +126,33 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
 </div>
 <div id="youtube">
 </div>
+<div id="video"> 
+
+</div>
 <div>
-<pre id="lyricsContent">
-</pre>
+  <a class="lv-size" href="javascript:setFonts(30)">大</a>
+  <a class="lv-size" href="javascript:setFonts(20)">中</a>
+  <a class="lv-size" href="javascript:setFonts(18)">小</a>
+</div>
+<div>
+<p id="lyricsContent">
+</p>
 </div>
 
 </div>
 <br><br>
 
 <footer class="container-fluid text-center">
-  <p>Footer Text</p>
+   <p>Copyright © 2016 UM Inc. All rights reserved
+</p>
 </footer>
 
 </body>
 <script type="text/javascript">
-     
+      function setFonts(size){
+        $('#lyricsContent').css('font-size',size);
+      }
+
       /*
       * 送出表單
       */
@@ -152,7 +184,10 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
                     $('#lyricsContent').append('<p>'+data[0].verse+'</p>');
                     $('#date').append(data[0].uploadDate);
                     $('#upload').append(data[0].name+'['+data[0].account+']');
-                    $('#youtube').append('<a href="'+data[0].link+'">'+data[0].link+'</a>');
+
+                    $('#youtube').append('<a href="'+data[0].link+'" target="_blank">'+data[0].link+'</a>');
+                   document.getElementById("video").innerHTML = "<iframe width='560' height='315' src='"+"http://www.youtube.com/embed/"+data[0].screen+"' frameborder='0' allowfullscreen></iframe>";
+
                   }
           });
       }

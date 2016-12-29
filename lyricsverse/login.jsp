@@ -5,7 +5,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+    <title>Lyrics Verse</title>
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -50,9 +51,9 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Staff</a></li>
+       <li class="active"><a href="./index.jsp">Home</a></li>
+        <li><a href="./about.jsp">About</a></li>
+        <li><a href="./staff.jsp">Staff</a></li>
         <%
         if(session.getAttribute("TOKEN")!=null){
         out.print(
@@ -113,7 +114,8 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
 <br><br>
 
 <footer class="container-fluid text-center">
-  <p>Footer Text</p>
+    <p>Copyright © 2016 UM Inc. All rights reserved
+</p>
 </footer>
 
 </body>
@@ -140,7 +142,6 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
                   success: function(data){
                       var data = JSON.parse(data);
                       if(data.status == 'success'){
-                          alert('success');
                           window.location.href='./index.jsp';
                       }
                   }

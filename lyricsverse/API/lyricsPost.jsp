@@ -10,19 +10,43 @@ request.setCharacterEncoding("UTF-8");
 Connection con = null;
 Statement stmt = null; 
 String query = ""; 
+PreparedStatement prepStmt = null;
 
 String uploadUser = session.getAttribute("UID").toString();
 String title = request.getParameter("lyricsname");
 String info = request.getParameter("info");
 String verse = request.getParameter("lyrics");
 String link = request.getParameter("link");
+String screen = "";
 try{
+   String[] split = link.split("v=");
+   screen = split[1];
+}
+catch(Exception e){
+  
+}
+
+try{
+
     Class.forName("com.mysql.jdbc.Driver").newInstance();
 	con = DriverManager.getConnection(DBDSN);
     stmt = con.createStatement();
-    query = "INSERT INTO w10540.`tblyrics` (tblyrics.`title`,tblyrics.`verse`,tblyrics.`info`,tblyrics.`uploadUser`,tblyrics.`uploadDate`,tblyrics.link)VALUES ('"+title+"','"+verse+"','"+info+"','"+uploadUser+"',NOW(),'"+link+"')";
+
+   	/* query = "INSERT INTO w10540.`tblyrics` (tblyrics.`title`,tblyrics.`verse`,tblyrics.`info`,tblyrics.`uploadUser`,tblyrics.`uploadDate`,tblyrics.link,tblyrics.screen)VALUES ('"+title+"','"+verse+"','"+info+"','"+uploadUser+"',NOW(),'"+link+"','"+screen+"')";
+	*/
+
+	query = "INSERT INTO w10540.`tblyrics` (tblyrics.`title`,tblyrics.`verse`,tblyrics.`info`,tblyrics.`uploadUser`,tblyrics.`uploadDate`,tblyrics.link,tblyrics.screen)VALUES (?,?,?,?,NOW(),?,?)";
 	
-	stmt.executeUpdate(query);
+	prepStmt = con.prepareStatement(query);
+
+	prepStmt.setString(1, title);
+	prepStmt.setString(2, verse);
+	prepStmt.setString(3, info);
+	prepStmt.setString(4, uploadUser);
+	prepStmt.setString(5, link);
+	prepStmt.setString(6, screen);
+
+	prepStmt.executeUpdate();
 
 	JSONObject json = new JSONObject();
 	

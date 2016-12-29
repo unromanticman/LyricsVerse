@@ -42,6 +42,7 @@ if(term.equals("INDEX8")){
 			obj.put("account", rs.getString("account"));
 			obj.put("name", rs.getString("name"));
 			obj.put("id", rs.getString("id"));
+			obj.put("screen",rs.getString("screen"));
 			list.put(obj);
 		}
 
@@ -80,6 +81,7 @@ else{
 			obj.put("account", rs.getString("account"));
 			obj.put("name", rs.getString("name"));
 			obj.put("id", rs.getString("id"));
+			obj.put("screen", rs.getString("screen"));
 			list.put(obj);
 		}
 

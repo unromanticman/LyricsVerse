@@ -14,14 +14,16 @@
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <title>Bootstrap Example</title>
+<head>  <title>Lyrics Verse</title>
+
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="./UI/sweetalert2.css">
+  <script type="text/javascript" src="./UI/sweetalert2.js"></script>
   <style>
     /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar {
@@ -50,9 +52,9 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Staff</a></li>
+        <li class="active"><a href="./index.jsp">Home</a></li>
+        <li><a href="./about.jsp">About</a></li>
+        <li><a href="./staff.jsp">Staff</a></li>
         <%
         if(session.getAttribute("TOKEN")!=null){
         out.print(
@@ -83,19 +85,19 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
   <form>
     <div class="form-group">
       <label for="formGroupExampleInput">Lyrics Name</label>
-      <input type="text" class="form-control" id="lyricsname" placeholder="Example input">
+      <input type="text" class="form-control" id="lyricsname" placeholder="Lyrics Name..." required>
     </div>
     <div class="form-group">
-      <label for="formGroupExampleInput2">Info</label>
-      <input type="text" class="form-control" id="info" placeholder="Another input">
+      <label for="formGroupExampleInput2">Author Info</label>
+      <input type="text" class="form-control" id="info" placeholder="Author Info..." required>
     </div>
     <div class="form-group">
       <label for="formGroupExampleInput2">link</label>
-      <input type="text" class="form-control" id="link" placeholder="Another input">
+      <input type="text" class="form-control" id="link" placeholder="Youtube link...">
     </div>
     <div class="form-group">
         <label for="comment">Lyrics</label>
-        <textarea class="form-control" rows="5" id="lyrics"></textarea>
+        <textarea class="form-control" rows="15" id="lyrics" placeholder="Lyrics..."></textarea>
     </div>
     <div style="text-align: center;">
     <button onclick="sendPost();" type="button" class="btn btn-default">Post</button>
@@ -104,7 +106,8 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
 </div>
 
 <footer class="container-fluid text-center">
-  <p>Footer Text</p>
+   <p>Copyright © 2016 UM Inc. All rights reserved
+</p>
 </footer>
 <script type="text/javascript">
     /*
@@ -119,12 +122,19 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
           var info = $('#info').val();
           var lyrics = $('#lyrics').val();
           var link = $('#link').val();
-
           var params = 'lyricsname='+lyricsname+
                         '&info='+info+
                         '&lyrics='+lyrics+
                         '&link='+link;
 
+          if(lyricsname === ""){
+            swal(
+                              'Error',
+                              'Please input Lyrics Name',
+                              'error'
+            )
+            return;
+          }
         $.ajax({
                   url: 'API/lyricsPost.jsp',
                   type:"post",
@@ -132,8 +142,20 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
                   success: function(data){
                       var data = JSON.parse(data);
                       if(data.status == 'success'){
-                          alert('success');
-                          window.location.href="./index.jsp";
+
+                           swal(
+                              'Success',
+                              'Start Your Life.',
+                              'success'
+                            ).then(
+                              function () {
+                                window.location.replace("./index.jsp");
+                              },
+                              // handling the promise rejection
+                              function (dismiss) {
+                               
+                              } 
+                          )
                       }
                   }
           });

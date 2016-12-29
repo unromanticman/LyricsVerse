@@ -5,11 +5,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Bootstrap Example</title>
+  <title>Lyrics Verse</title>
   <meta charset="utf-8">
   
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="./UI/sweetalert2.css">
+  <script type="text/javascript" src="./UI/sweetalert2.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <style>
@@ -40,9 +42,9 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Staff</a></li>
+        <li class="active"><a href="./index.jsp">Home</a></li>
+        <li><a href="./about.jsp">About</a></li>
+        <li><a href="./staff.jsp">Staff</a></li>
         <%
         if(session.getAttribute("TOKEN")!=null){
         out.print(
@@ -73,20 +75,20 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
   <form>
     <div class="form-group">
       <label for="formGroupExampleInput">Name</label>
-      <input type="text" class="form-control" id="username" placeholder="Example input">
+      <input type="text" class="form-control" id="username" placeholder="Your name...">
     </div>
     <div class="form-group">
       <label for="formGroupExampleInput2">Account</label>
-      <input type="text" class="form-control" id="account" placeholder="Another input">
+      <input type="text" class="form-control" id="account" placeholder="Your account...">
     </div>
     <div class="form-group">
       <label for="formGroupExampleInput2">Password</label>
-      <input type="Password" class="form-control" id="password1" placeholder="Another input">
+      <input type="Password" class="form-control" id="password1" placeholder="Your password...">
     </div>
    
     <div class="form-group">
       <label for="formGroupExampleInput2">Repassword</label>
-      <input type="Password" class="form-control" id="password2" placeholder="Another input">
+      <input type="Password" class="form-control" id="password2" placeholder="Your password...">
     </div>
 
  <div class="form-group">
@@ -98,11 +100,11 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
    </div>
      <div class="form-group">
       <label for="formGroupExampleInput2">Tag</label>
-      <input type="text" class="form-control" id="tag" placeholder="Another input">
+      <input type="text" class="form-control" id="tag" placeholder="Your Tag">
     </div>
      <div class="form-group">
         <label for="comment">Intro</label>
-        <textarea class="form-control" rows="5" id="intro"></textarea>
+        <textarea class="form-control" rows="8" id="intro"></textarea>
     </div>
     <div style="text-align: center;">
     <div class="checkbox">
@@ -114,7 +116,8 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
 </div>
 
 <footer class="container-fluid text-center">
-  <p>Footer Text</p>
+    <p>Copyright © 2016 UM Inc. All rights reserved
+</p>
 </footer>
 
 </body>
@@ -157,7 +160,20 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
                   success: function(data){
                       var data = JSON.parse(data);
                       if(data.status == 'success'){
-                          alert('success');
+                          swal(
+                              'Success',
+                              'Start Your Life.',
+                              'success'
+                            ).then(
+                              function () {
+                                window.location.replace("./login.jsp");
+                              },
+                              // handling the promise rejection
+                              function (dismiss) {
+                               
+                              }
+)
+                          
                       }
                   }
           });
