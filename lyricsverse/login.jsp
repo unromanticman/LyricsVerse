@@ -102,7 +102,7 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
 
         <h2 class="form-signin-heading">Sign in</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="text" id="account" class="form-control" placeholder="Email address" required autofocus><br>
+        <input type="text" id="account" class="form-control" placeholder="Account" required autofocus><br>
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" id="password" class="form-control" placeholder="Password" required>
         <br>
