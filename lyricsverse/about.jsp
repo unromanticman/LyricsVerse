@@ -54,8 +54,8 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="./index.jsp">Home</a></li>
-        <li><a href="./about.jsp">About</a></li>
+        <li><a href="./index.jsp">Home</a></li>
+        <li class="active"><a href="./about.jsp">About</a></li>
         <li><a href="./staff.jsp">Staff</a></li>
         <%
         if(session.getAttribute("TOKEN")!=null){

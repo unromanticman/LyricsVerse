@@ -52,13 +52,13 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="./index.jsp">Home</a></li>
+        <li><a href="./index.jsp">Home</a></li>
         <li><a href="./about.jsp">About</a></li>
         <li><a href="./staff.jsp">Staff</a></li>
         <%
         if(session.getAttribute("TOKEN")!=null){
         out.print(
-        "<li><a href='post.jsp'>Post Lyrics</a></li>");
+        "<li class='active'><a href='post.jsp'>Post Lyrics</a></li>");
       }
         
       %>

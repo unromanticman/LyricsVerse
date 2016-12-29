@@ -54,9 +54,9 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="./index.jsp">Home</a></li>
+        <li><a href="./index.jsp">Home</a></li>
         <li><a href="./about.jsp">About</a></li>
-        <li><a href="./staff.jsp">Staff</a></li>
+        <li class="active"><a href="./staff.jsp">Staff</a></li>
         <%
         if(session.getAttribute("TOKEN")!=null){
         out.print(
@@ -90,8 +90,8 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
 </div>
 <div id="inner">
 <p id="intro">
-網站設計/後端：林郁翔<br>
-指導老師：徐聖軒<br>
+網站設計/後端：林郁翔<br><br>
+指導老師：徐聖軒<br><br>
 GITHUB : <a href="https://github.com/unromanticman">https://github.com/unromanticman</a>
 </p>
 
