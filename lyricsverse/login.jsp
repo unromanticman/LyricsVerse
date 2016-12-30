@@ -12,9 +12,9 @@
   <link rel="stylesheet" href="./UI/animate.css">
    <link rel="stylesheet" href="./UI/sweetalert2.css">
    <script type="text/javascript" src="./UI/sweetalert2.js"></script>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="./UI/bootstrap.min.css">
+  <script src="./UI/jquery.min.js"></script>
+  <script src="./UI/bootstrap.min.js"></script>
   <script src='https://www.google.com/recaptcha/api.js'></script>
 
   <style>
