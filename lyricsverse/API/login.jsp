@@ -20,7 +20,7 @@ if(request.getParameter("g-recaptcha-response") == null || request.getParameter(
 		json.put("msg", "captcha error");
 		String output = json.toString();
 		out.println(output);
-		 response.setHeader("Refresh", "3; URL=index.jsp");
+		 response.setHeader("Refresh", "3; URL=./../login.jsp");
 
 		return;
 	}
@@ -29,7 +29,7 @@ if(request.getParameter("g-recaptcha-response") == null || request.getParameter(
 		json.put("msg", "captcha error");
 		String output = json.toString();
 		out.println(output);
-		 response.setHeader("Refresh", "3; URL=./../index.jsp");
+		 response.setHeader("Refresh", "3; URL=./../login.jsp");
 
 		return;
 }
@@ -111,9 +111,12 @@ try{
 		json.put("msg", "login error");
 		String output = json.toString();
 		out.println(output);
+		 response.setHeader("Refresh", "3; URL=./../login.jsp");
+		return;
 	}
 	con.close(); 
     stmt.close(); 
+    response.setHeader("Refresh", "3; URL=./../index.jsp");
 }
 catch(SQLException sqle){
  	JSONObject json = new JSONObject();
@@ -121,7 +124,8 @@ catch(SQLException sqle){
 	json.put("msg", sqle);
 	String output = json.toString();
 	out.println(output);
+	response.setHeader("Refresh", "3; URL=./../login.jsp");
 }
 
-		 response.setHeader("Refresh", "3; URL=./../index.jsp");
+		
 %>

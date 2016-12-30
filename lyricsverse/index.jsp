@@ -240,6 +240,15 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
   });
     $('#titlemain').addClass('animated fadeIn');
   
+  /**
+  * 按ENTER可以直接送出訊息
+  **/
+    $("#searchText").keyup(function(event){
+        if(event.keyCode == 13){
+          sendSearch();
+        }
+    });
+
   </script>
 
 

@@ -137,6 +137,9 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
   <a class="lv-size" href="javascript:setFonts(20)">中</a>
   <a class="lv-size" href="javascript:setFonts(18)">小</a>
 </div>
+<div id="edit">
+
+</div>
 <div>
 <p id="lyricsContent">
 </p>
@@ -215,9 +218,24 @@ s.setAttribute('data-timestamp', +new Date());
           });
       }
 
-    
-       $( document ).ready(function() {
+      function getIsRight(){
+         var params = 'id='+'<%=vid%>';
+        $.ajax({
+                  url: 'API/getIsRight.jsp',
+                  type:"post",
+                  data: params,
+                  success: function(data){
+                    var data = JSON.parse(data);
+                    if(data.status == 'success'){
+                       $('#edit').append('<a href="./edit.jsp?pid=<%=vid%>" >[E.D.I.T]</a>');
+                    }
+                  }
+          });
+
+      }
+      $( document ).ready(function() {
           getLyricsContent();
+          getIsRight();
           //sendSearch("INDEX8");
       });
        function logout(){
@@ -271,5 +289,13 @@ s.setAttribute('data-timestamp', +new Date());
           }
       });
   });
+  /**
+  * 按ENTER可以直接送出訊息
+  **/
+    $("#searchText").keyup(function(event){
+        if(event.keyCode == 13){
+            window.location.replace('./index.jsp?term='+$( '#searchText' ).val());
+        }
+    });
   </script>
 </html>
