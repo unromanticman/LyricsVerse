@@ -15,6 +15,8 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src='https://www.google.com/recaptcha/api.js'></script>
+
   <style>
     /* Remove the navbar's default margin-bottom and rounded borders */ 
     .navbar {
@@ -102,15 +104,17 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
   
 <div class="text-center lv-div-center">
    <div id="loginPad" class="container" style="width: 300px;">
-
+   <form method="POST" action="API/login.jsp">
         <h2 class="form-signin-heading">Sign in</h2>
         <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="text" id="account" class="form-control" placeholder="Account" required autofocus><br>
+        <input name="account" type="text" id="account" class="form-control" placeholder="Account" required autofocus><br>
         <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" id="password" class="form-control" placeholder="Password" required>
+        <input name="password" type="password" id="password" class="form-control" placeholder="Password" required>
         <br>
-        <button  onclick="sendLogin();" class="btn btn-lg btn-primary btn-block" >Sign in</button>
-     
+        <div class="g-recaptcha" data-sitekey="6Ld8IxAUAAAAAAr-rh-Wq4f5-RUTRWQ-UP-nKz9H"></div>
+        <br>
+        <input  type="submit"  class="btn btn-lg btn-primary btn-block" value="Sign in"></input >
+    </form>
     </div> <!-- /container -->
 
 </div>
@@ -134,7 +138,7 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
           var account = $('#account').val();
           var password = $('#password').val();
          
-          var params = 'account='+account+
+        var params = 'account='+account+
                         '&password='+password;
 
           

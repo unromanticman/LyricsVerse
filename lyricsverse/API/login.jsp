@@ -7,6 +7,34 @@
 
 
 
+<%
+
+/**
+ *  CAPTCHA
+ */
+if(request.getParameter("g-recaptcha-response") == null || request.getParameter("g-recaptcha-response").equals("")){
+	String str = request.getParameter("g-recaptcha-response");
+	if(str.equals("")){
+		JSONObject json = new JSONObject();
+		json.put("status", "failed");
+		json.put("msg", "captcha error");
+		String output = json.toString();
+		out.println(output);
+		 response.setHeader("Refresh", "3; URL=index.jsp");
+
+		return;
+	}
+	JSONObject json = new JSONObject();
+		json.put("status", "failed");
+		json.put("msg", "captcha error");
+		String output = json.toString();
+		out.println(output);
+		 response.setHeader("Refresh", "3; URL=./../index.jsp");
+
+		return;
+}
+%>
+
 <%!
 
  public static String encrypt(String plainText) throws Exception {
@@ -95,4 +123,5 @@ catch(SQLException sqle){
 	out.println(output);
 }
 
+		 response.setHeader("Refresh", "3; URL=./../index.jsp");
 %>

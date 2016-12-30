@@ -99,7 +99,8 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
 <p>1.密碼採用SHA-1 加密</p>
 <p>2.驗證採用TOKEN 不會使使用者暴露重要資料</p>
 <p>3.資料“新增”使用BIND VALUE方式，防止INJECTION</p>
-<p>4.不使用COOIKE，而是使用SESSION防止使用者竄改</p>
+<p>4.不使用COOKIE，而是使用SESSION防止使用者竄改</p>
+<p>5.使用GOOGLE CAPTCHA 驗證碼，防止機器人惡意登入</p>
 <h3>特點：</h3>
 <p>使用API方式呼叫資料，程式碼不會混亂，好維護。</p>
 <br>
