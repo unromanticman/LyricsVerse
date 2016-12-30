@@ -40,6 +40,10 @@
         border: none;
         font-weight:;
     }
+
+    #searchText,#gobtn{
+      z-index: 0;
+    }
   </style>
 </head>
 <body>
@@ -92,9 +96,9 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
   <div class="row text-center">
         <div class="lv-div-center" style="width: 50%">
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Search for...">
+      <input id="searchText" type="text" class="form-control" placeholder="Search for...">
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
+        <button id="gobtn"class="btn btn-default" type="button">Go!</button>
       </span>
     </div><!-- /input-group -->
  </div>
@@ -114,7 +118,9 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
         <div class="g-recaptcha" data-sitekey="6Ld8IxAUAAAAAAr-rh-Wq4f5-RUTRWQ-UP-nKz9H"></div>
         <br>
         <input  type="submit"  class="btn btn-lg btn-primary btn-block" value="Sign in"></input >
+      
     </form>
+
     </div> <!-- /container -->
 
 </div>
@@ -178,3 +184,11 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
       
 </script>
 </html>
+<!--load-->
+<div id="overlay">
+<div id="showload">
+<span class="cssload-loader"><span class="cssload-loader-inner"></span></span>
+</div>
+</div>
+<link rel="stylesheet" type="text/css" href="./UI/load.css">
+<script type="text/javascript" src="./UI/load.js"></script>

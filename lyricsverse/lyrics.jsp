@@ -56,6 +56,10 @@
     #upload,#date{
        font-size: 20px;
     }
+    
+    #searchText,#gobtn{
+      z-index: 0;
+    }
   </style>
 </head>
 <body>
@@ -111,7 +115,7 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
     <div class="input-group">
       <input type="text" id="searchText" class="form-control" placeholder="Search for...">
       <span class="input-group-btn">
-        <button onclick="window.location.replace('./index.jsp?term='+$( '#searchText' ).val());" class="btn btn-default" type="button">Go!</button>
+        <button id="gobtn" onclick="window.location.replace('./index.jsp?term='+$( '#searchText' ).val());" class="btn btn-default" type="button">Go!</button>
       </span>
     </div><!-- /input-group -->
  </div>
@@ -299,3 +303,11 @@ s.setAttribute('data-timestamp', +new Date());
     });
   </script>
 </html>
+<!--load-->
+<div id="overlay">
+<div id="showload">
+<span class="cssload-loader"><span class="cssload-loader-inner"></span></span>
+</div>
+</div>
+<link rel="stylesheet" type="text/css" href="./UI/load.css">
+<script type="text/javascript" src="./UI/load.js"></script>

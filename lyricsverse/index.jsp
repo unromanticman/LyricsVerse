@@ -29,7 +29,12 @@
     .lv-div-center{
         margin: 0px auto;
     }
+    
+    #searchText,#gobtn{
+      z-index: 0;
+    }
     .lv-text-center{
+
       text-align: center;
     }
 
@@ -97,7 +102,7 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
     <div class="input-group">
       <input id="searchText" type="text" class="form-control" placeholder="Search for...">
       <span class="input-group-btn">
-        <button onclick="sendSearch()" class="btn btn-default" type="button">Go!</button>
+        <button id="gobtn" onclick="sendSearch()" class="btn btn-default" type="button">Go!</button>
       </span>
     </div><!-- /input-group -->
  </div>
@@ -254,4 +259,13 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
 
 
 </body>
+
 </html>
+<!--load-->
+<div id="overlay">
+<div id="showload">
+<span class="cssload-loader"><span class="cssload-loader-inner"></span></span>
+</div>
+</div>
+<link rel="stylesheet" type="text/css" href="./UI/load.css">
+<script type="text/javascript" src="./UI/load.js"></script>

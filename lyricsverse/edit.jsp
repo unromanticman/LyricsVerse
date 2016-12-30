@@ -212,3 +212,11 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
 </script>
 </body>
 </html>
+<!--load-->
+<div id="overlay">
+<div id="showload">
+<span class="cssload-loader"><span class="cssload-loader-inner"></span></span>
+</div>
+</div>
+<link rel="stylesheet" type="text/css" href="./UI/load.css">
+<script type="text/javascript" src="./UI/load.js"></script>
