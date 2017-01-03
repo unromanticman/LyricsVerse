@@ -175,6 +175,13 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
 )
                           
                       }
+                      else{
+                        swal(
+                          'Account Exist',
+                          'please check!',
+                          'error'
+                        )
+                      }
                   }
           });
       }

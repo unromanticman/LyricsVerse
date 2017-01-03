@@ -29,7 +29,6 @@
       padding: 25px;
     }
     #inner {
-    width: 50%;
     margin: 0 auto; 
     }
     p{
@@ -88,12 +87,13 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
     <h1>Lyrics Verse (Staff)</h1>      
   </div>
 </div>
-<div id="inner">
-<p id="intro">
-網站設計/後端：林郁翔<br><br>
-指導老師：徐聖軒<br><br>
-GITHUB : <a href="https://github.com/unromanticman">https://github.com/unromanticman</a>
-</p>
+<div class="text-center" style="padding: 10px;">
+<h3>網站設計/後端：林郁翔</h3>
+<h3>指導老師：徐聖軒</h3>
+<h3>靈感來源：</h3>
+
+<iframe width="300" height="600" src="https://widget.kkbox.com/v1/?id=Os-moMAoqcVQY58mJh&amp;type=album&amp;terr=tw&amp;lang=tc" frameborder="0" scrolling="no"></iframe>
+</div>
 
 <br>
 <br>
@@ -107,6 +107,56 @@ GITHUB : <a href="https://github.com/unromanticman">https://github.com/unromanti
 </script>
 </body>
 </html>
+<!--自動往上-->
+  <style type="text/css">
+    #gotop {
+        display: none;
+        position: fixed;
+        right: 20px;
+        bottom: 20px;    
+        padding-left:15px; 
+        padding-right:15px; 
+        padding-top: 5px;  
+        padding-bottom: 5px;
+        font-size: 20px;
+        background: #777;
+        color: white;
+        cursor: pointer;
+        -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      border-radius: 10px;
+    }
+  </style>
+  <!--自動往上-->
+  <div id="gotop"><p>︿</p></div>
+  <script type="text/javascript">
+  $(function(){
+      $("#gotop").click(function(){
+          jQuery("html,body").animate({
+              scrollTop:0
+          },1000);
+      });
+      $(window).scroll(function() {
+          if ($(this).scrollTop() > 250){
+              $('#gotop').fadeIn("fast");
+          } else {
+              $('#gotop').stop().fadeOut("fast");
+          }
+      });
+  });
+    function logout(){
+        var params = "";
+        $.ajax({
+                  url: 'API/logout.jsp',
+                  type:"post",
+                  data: params,
+                  success: function(data){
+                      location.reload();
+                  }
+          });
+
+      }
+  </script>
 <!--load-->
 <div id="overlay">
 <div id="showload">

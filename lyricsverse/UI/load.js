@@ -5,5 +5,5 @@ setTimeout(function(){
 $('#overlay').fadeOut('slow', function(){
 
 });
-}, 300);
+}, 800);
 	})

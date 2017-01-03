@@ -148,6 +148,19 @@ out.print("<li><a href='register.jsp'><span class='glyphicon'></span> Register</
           }
       });
   });
+
+    function logout(){
+        var params = "";
+        $.ajax({
+                  url: 'API/logout.jsp',
+                  type:"post",
+                  data: params,
+                  success: function(data){
+                      location.reload();
+                  }
+          });
+
+      }
   </script>
 </body>
 </html>
